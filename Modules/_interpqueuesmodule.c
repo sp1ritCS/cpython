@@ -297,10 +297,10 @@ add_QueueError(PyObject *mod)
 {
     module_state *state = get_module_state(mod);
 
-#define PREFIX "test.support.interpreters."
+#define EXCT_PREFIX "test.support.interpreters."
 #define ADD_EXCTYPE(NAME, BASE, DOC)                                    \
     assert(state->NAME == NULL);                                        \
-    if (add_exctype(mod, &state->NAME, PREFIX #NAME, DOC, BASE) < 0) {  \
+    if (add_exctype(mod, &state->NAME, EXCT_PREFIX #NAME, DOC, BASE) < 0) {  \
         return -1;                                                      \
     }
     ADD_EXCTYPE(QueueError, PyExc_RuntimeError,
@@ -310,7 +310,7 @@ add_QueueError(PyObject *mod)
     state->QueueEmpty = NULL;
     state->QueueFull = NULL;
 #undef ADD_EXCTYPE
-#undef PREFIX
+#undef EXCT_PREFIX
 
     return 0;
 }
